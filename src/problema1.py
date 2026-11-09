@@ -16,24 +16,14 @@ from collections import Counter
 # 1. CARGA DE IMAGEN
 # =====================================================================
 
-# Se prueban varias rutas habituales para no depender de la carpeta actual
-RUTAS_POSIBLES = [
-    os.path.join("..", "images", "monedas.jpg"),
-    os.path.join("images", "monedas.jpg"),
-    "monedas.jpg",
-]
 
-imagen = None
-for ruta in RUTAS_POSIBLES:
-    imagen = cv2.imread(ruta)
-    if imagen is not None:
-        print("Imagen cargada desde:", ruta)
-        break
+ruta = "..\images\monedas.jpg"
+
+imagen = cv2.imread(ruta)
 
 if imagen is None:
-    raise FileNotFoundError(
-        "No se pudo cargar la imagen. Rutas probadas: " + str(RUTAS_POSIBLES)
-    )
+    raise FileNotFoundError("No se pudo cargar la imagen")
+
 
 # OpenCV trabaja en BGR, Matplotlib utiliza RGB
 imagen_rgb = cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB)
